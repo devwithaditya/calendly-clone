@@ -2,7 +2,7 @@
 "name": "calendly",
 "private": true,
 "version": "0.0.0",
-"homepage": "https://your-username.github.io/calendly",
+"homepage": "https://devwithaditya.github.io/calendly",
 "type": "module",
 "scripts": {
 "dev": "vite",
