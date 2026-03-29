@@ -119,7 +119,7 @@ This project is for educational purposes.
 
 **Aditya Raj**
 
-* GitHub: https://github.com/your-username
+* GitHub: https://github.com/devwithaditya
 
 ---
 
