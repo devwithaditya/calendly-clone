@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,34 +14,39 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          {/* Public booking page - no sidebar */}
-          <Route path="/book/:slug" element={<BookingPage />} />
+const App = () => ( <QueryClientProvider client={queryClient}> <TooltipProvider> <Toaster /> <Sonner />
 
-          {/* Dashboard pages with sidebar */}
-          <Route element={<AppLayout />}>
-            <Route path="/" element={<Index />} />
-            <Route path="/meetings" element={<Meetings />} />
-            <Route path="/availability" element={<Availability />} />
-            <Route path="/create-event" element={<CreateEvent />} />
-            <Route path="/contacts" element={<PlaceholderPage title="Contacts" />} />
-            <Route path="/workflows" element={<PlaceholderPage title="Workflows" />} />
-            <Route path="/integrations" element={<PlaceholderPage title="Integrations & Apps" />} />
-            <Route path="/analytics" element={<PlaceholderPage title="Analytics" />} />
-            <Route path="/admin" element={<PlaceholderPage title="Admin Center" />} />
-            <Route path="/help" element={<PlaceholderPage title="Help" />} />
-          </Route>
+```
+  {/* ✅ CHANGED HERE */}
+  <HashRouter>
+    <Routes>
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+      {/* Public booking page */}
+      <Route path="/book/:slug" element={<BookingPage />} />
+
+      {/* Dashboard layout */}
+      <Route element={<AppLayout />}>
+        <Route path="/" element={<Index />} />
+        <Route path="/meetings" element={<Meetings />} />
+        <Route path="/availability" element={<Availability />} />
+        <Route path="/create-event" element={<CreateEvent />} />
+        <Route path="/contacts" element={<PlaceholderPage title="Contacts" />} />
+        <Route path="/workflows" element={<PlaceholderPage title="Workflows" />} />
+        <Route path="/integrations" element={<PlaceholderPage title="Integrations & Apps" />} />
+        <Route path="/analytics" element={<PlaceholderPage title="Analytics" />} />
+        <Route path="/admin" element={<PlaceholderPage title="Admin Center" />} />
+        <Route path="/help" element={<PlaceholderPage title="Help" />} />
+      </Route>
+
+      {/* 404 */}
+      <Route path="*" element={<NotFound />} />
+
+    </Routes>
+  </HashRouter>
+
+</TooltipProvider>
+```
+
   </QueryClientProvider>
 );
 
